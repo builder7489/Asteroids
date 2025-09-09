@@ -3,17 +3,9 @@ from circleshape import CircleShape
 from constants import PLAYER_RADIUS
 
 class Player(CircleShape):
-    def __init__(self, x, y, radius):
-        if hasattr(self, "containers"):
-            super().__init__(self.containers)
-        else:
-            super().__init__()
+    def __init__(self, x, y):
+        super().__init__(x, y, PLAYER_RADIUS)
 
-        self.x = x
-        self.y = y
-        self.position = pygame.Vector2(x, y)
-        self.velocity = pygame.Vector2(0, 0)
-        self.radius = radius
         self.rotation = 0
 
     # in the player class
@@ -26,4 +18,4 @@ class Player(CircleShape):
         return [a, b, c]
     
     def draw(self, screen):
-        pygame.draw.polygon(screen, "white", self.triangle(), width=2)
+        pygame.draw.polygon(screen, pygame.Color(255, 255, 255), self.triangle(), 2)

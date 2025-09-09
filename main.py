@@ -6,7 +6,7 @@ from constants import *
 from player import Player
 
 def main():
-    pygame.init
+    pygame.init()
 
     print("Starting Asteroids!")
     print(f"Screen width: {SCREEN_WIDTH}")
@@ -17,25 +17,30 @@ def main():
 
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     # player starting location
-    x_location = SCREEN_WIDTH / 2
-    y_location = SCREEN_HEIGHT / 2
+    x = SCREEN_WIDTH / 2
+    y = SCREEN_HEIGHT / 2
 
-    player = Player(x_location, y_location, PLAYER_RADIUS)   
+    player = Player(x, y)   
 
     # Start game loop
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
+        # game background
         screen.fill("black")
         
         # render player
+        # print(type(player.draw(screen)))
+        # print(player.triangle())
+        # print(x, y)
+
         player.draw(screen)
 
-        pygame.display.flip
+        pygame.display.flip()
 
         game_clock.tick(60)
-        dt = game_clock.tick(60) / 1000
+        dt = game_clock.tick() / 1000
 
 
 
