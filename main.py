@@ -1,3 +1,4 @@
+
 # using the open source pygame library
 import pygame
 
@@ -13,7 +14,6 @@ def main():
     print(f"Screen height: {SCREEN_HEIGHT}")
 
     game_clock = pygame.time.Clock()
-    dt = 0
 
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     # player starting location
@@ -29,6 +29,11 @@ def main():
                 return
         # game background
         screen.fill("black")
+
+        dt = game_clock.tick(60) / 1000
+        # print(dt)
+
+        player.update(dt)
         
         # render player
         # print(type(player.draw(screen)))
@@ -38,11 +43,6 @@ def main():
         player.draw(screen)
 
         pygame.display.flip()
-
-        game_clock.tick(60)
-        dt = game_clock.tick() / 1000
-
-
 
 if __name__ == "__main__":
     main()
