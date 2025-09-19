@@ -16,31 +16,39 @@ def main():
     game_clock = pygame.time.Clock()
 
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    
     # player starting location
     x = SCREEN_WIDTH / 2
     y = SCREEN_HEIGHT / 2
 
-    player = Player(x, y)   
+    # Groups for the game loop
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group() 
+
+    # Add groups to all player objects
+    Player.containers = (updatable, drawable)
+
+    player = Player(x, y)
 
     # Start game loop
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
+            
         # game background
         screen.fill("black")
 
         dt = game_clock.tick(60) / 1000
-        # print(dt)
 
-        player.update(dt)
-        
-        # render player
-        # print(type(player.draw(screen)))
-        # print(player.triangle())
-        # print(x, y)
+        # update all updatable items
+        for item in updatable:
+            updatable.update(dt)
 
-        player.draw(screen)
+
+        # draw/ render all items individually
+        for item in drawable:
+            item.draw(screen)
 
         pygame.display.flip()
 
