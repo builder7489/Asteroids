@@ -5,6 +5,8 @@ import pygame
 # using magic numbers in the game
 from constants import *
 from player import Player
+from asteroid import Asteroid
+from asteroidfield import AsteroidField
 
 def main():
     pygame.init()
@@ -24,11 +26,15 @@ def main():
     # Groups for the game loop
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group() 
+    asteroids = pygame.sprite.Group()
 
     # Add groups to all player objects
     Player.containers = (updatable, drawable)
+    Asteroid.containers = (asteroids, updatable, drawable)
+    AsteroidField.containers = (updatable,)
 
     player = Player(x, y)
+    asteroid_field = AsteroidField()
 
     # Start game loop
     while True:
@@ -42,8 +48,8 @@ def main():
         dt = game_clock.tick(60) / 1000
 
         # update all updatable items
-        for item in updatable:
-            updatable.update(dt)
+        #for item in updatable:
+        updatable.update(dt)
 
 
         # draw/ render all items individually
