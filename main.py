@@ -1,6 +1,7 @@
 
 # using the open source pygame library
 import pygame
+import sys
 
 # using magic numbers in the game
 from constants import *
@@ -51,12 +52,17 @@ def main():
         #for item in updatable:
         updatable.update(dt)
 
-
         # draw/ render all items individually
         for item in drawable:
             item.draw(screen)
 
+        for asteroid in asteroids:
+            if player.collision(asteroid):
+                sys.exit()
+
         pygame.display.flip()
+
+
 
 if __name__ == "__main__":
     main()
