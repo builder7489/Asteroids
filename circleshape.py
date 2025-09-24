@@ -27,7 +27,6 @@ class CircleShape(pygame.sprite.Sprite):
         detect = False
 
         if distance <= min_distance:
-            print("Game Over!")
             detect = True
-            
+
         return detect        
