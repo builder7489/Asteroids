@@ -56,10 +56,10 @@ def main():
             if player.collision(asteroid):
                 sys.exit()
 
-            # destroy asteroid with bullet
+            # split asteroid with bullet
             for bullet in shots:
                 if bullet.collision(asteroid):
-                    asteroid.kill()
+                    asteroid.split()
                     bullet.kill()
         
 
